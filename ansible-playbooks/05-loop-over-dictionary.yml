@@ -1,0 +1,18 @@
+- name: create users with different shells
+  hosts: all
+  become: yes
+
+  vars:
+    users:
+      - name: test1
+        shell: /bin/bash
+      - name: test2
+        shell: /bin/sh
+
+  tasks:
+    - name: create users
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        shell: "{{ item.shell }}"
+        state: present
+      loop: "{{ users }}"
