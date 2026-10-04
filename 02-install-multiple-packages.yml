@@ -1,0 +1,16 @@
+- name: install multiple packages
+  hosts: all
+  become: yes
+
+  vars:
+    packages:
+      - git
+      - wget
+      - curl
+
+  tasks:
+    - name: install packages
+      ansible.builtin.dnf:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ packages }}"
