@@ -1,0 +1,14 @@
+- name: conditional package installation
+  hosts: all
+  become: yes
+
+  vars:
+    webserver_type: nginx
+    package_name: nginx
+
+  tasks:
+    - name: install nginx
+      ansible.builtin.dnf:
+        name: "{{ package_name }}"
+        state: present
+      when: webserver_type == "nginx"
