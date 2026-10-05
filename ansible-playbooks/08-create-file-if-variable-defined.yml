@@ -1,0 +1,13 @@
+- name: create file if variable is defined
+  hosts: all
+
+  vars:
+    special_user: john
+    file_name: /tmp/special.txt
+
+  tasks:
+    - name: create special file
+      ansible.builtin.file:
+        path: "{{ file_name }}"
+        state: touch
+      when: special_user is defined
