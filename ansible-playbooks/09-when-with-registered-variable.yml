@@ -1,0 +1,18 @@
+- name: use registered variable
+  hosts: all
+
+  vars:
+    command_to_run: 'echo "success"'
+    file_name: /tmp/success.txt
+
+  tasks:
+    - name: run command
+      ansible.builtin.shell:
+        cmd: "{{ command_to_run }}"
+      register: result
+
+    - name: create file
+      ansible.builtin.file:
+        path: "{{ file_name }}"
+        state: touch
+      when: "'success' in result.stdout"
