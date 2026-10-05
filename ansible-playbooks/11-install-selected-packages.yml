@@ -1,0 +1,20 @@
+- name: install selected packages
+  hosts: all
+  become: yes
+
+  vars:
+    packages:
+      - name: git
+        status: install
+      - name: nano
+        status: skip
+      - name: curl
+        status: install
+
+  tasks:
+    - name: install packages
+      ansible.builtin.dnf:
+        name: "{{ item.name }}"
+        state: present
+      loop: "{{ packages }}"
+      when: item.status == "install"
