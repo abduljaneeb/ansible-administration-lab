@@ -1,0 +1,13 @@
+- name: install apache on debian
+  hosts: all
+  become: yes
+
+  vars:
+    package_name: apache2
+
+  tasks:
+    - name: install apache
+      ansible.builtin.apt:
+        name: "{{ package_name }}"
+        state: present
+      when: ansible_os_family == "Debian"
