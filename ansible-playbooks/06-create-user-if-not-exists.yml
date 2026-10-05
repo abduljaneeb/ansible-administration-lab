@@ -1,0 +1,20 @@
+- name: create user if not exists
+  hosts: all
+  become: yes
+
+  vars:
+    username: devops
+
+  tasks:
+    - name: check user
+      ansible.builtin.getent:
+        database: passwd
+        key: "{{ username }}"
+      register: user_check
+      ignore_errors: yes
+
+    - name: create user
+      ansible.builtin.user:
+        name: "{{ username }}"
+        state: present
+      when: user_check.failed
