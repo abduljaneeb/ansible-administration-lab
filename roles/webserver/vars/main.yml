@@ -1,4 +1,0 @@
----
-# vars file for webserver
-wordpress_dir: /var/www/html
-
