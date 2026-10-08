@@ -1,0 +1,9 @@
+---
+- name: Display architecture
+  hosts: dev
+  gather_facts: yes
+
+  tasks:
+    - name: Show architecture
+      ansible.builtin.debug:
+        msg: "Architecture: {{ ansible_architecture }}"
