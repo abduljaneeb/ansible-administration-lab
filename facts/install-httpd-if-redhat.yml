@@ -1,0 +1,11 @@
+- name : install httpd if the os is redhat
+  hosts: dev
+  vars:
+    package:
+      - httpd
+  tasks:
+   - name: install httpd
+     ansible.builtin.dnf:
+      name: "{{ package }}"
+      state: present
+     when: ansible_os_family == "RedHat"
