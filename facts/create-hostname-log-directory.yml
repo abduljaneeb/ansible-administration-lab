@@ -1,0 +1,10 @@
+---
+- name: Create hostname log directory
+  hosts: web
+
+  tasks:
+    - name: Create directory
+      ansible.builtin.file:
+        path: "/var/log/ansible/{{ ansible_hostname }}"
+        state: directory
+        mode: '0755'
