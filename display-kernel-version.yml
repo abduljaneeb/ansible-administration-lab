@@ -1,0 +1,9 @@
+---
+- name: Display kernel version
+  hosts: dev
+  gather_facts: yes
+
+  tasks:
+    - name: Show kernel
+      ansible.builtin.debug:
+        msg: "Kernel: {{ ansible_kernel }}"
