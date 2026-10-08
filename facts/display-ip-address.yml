@@ -1,0 +1,9 @@
+---
+- name: Display IP address
+  hosts: dev
+  gather_facts: yes
+
+  tasks:
+    - name: Show IP address
+      ansible.builtin.debug:
+        msg: "IP Address: {{ ansible_default_ipv4.address }}"
