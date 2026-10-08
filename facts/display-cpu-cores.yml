@@ -1,0 +1,3 @@
+- name: Display CPU cores
+      ansible.builtin.debug:
+        msg: "CPU cores: {{ ansible_processor_vcpus }}"
