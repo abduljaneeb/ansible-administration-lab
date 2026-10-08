@@ -1,0 +1,5 @@
+- name: Create file if memory is 1GB or more
+      ansible.builtin.file:
+        path: /tmp/memory-ok.txt
+        state: touch
+      when: ansible_memtotal_mb >= 1024
