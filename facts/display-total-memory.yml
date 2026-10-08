@@ -1,0 +1,9 @@
+---
+- name: Display memory
+  hosts: dev
+  gather_facts: yes
+
+  tasks:
+    - name: Show total memory
+      ansible.builtin.debug:
+        msg: "Total Memory: {{ ansible_memtotal_mb }} MB"
